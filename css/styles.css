@@ -16,7 +16,7 @@ html, body {
 body {
     font-family: "Nunito", sans-serif;
     text-align: center;
-    background: rgba(235, 235, 235, 0.9);
+    background: rgba(229, 229, 247, 0.9);
 }
 
 header {
@@ -29,9 +29,11 @@ header {
 }
 
 header h1 {
-    font-size: 1.25em;
+    /*font-size: 1.25em;*/
     color: rgba(50, 50, 50, 0.9);
     margin-top: 35px;
+    font-size: xx-large;
+    /*text-shadow: 2px 2px 5px plum;*/
 }
 
 .search-input {
@@ -92,6 +94,7 @@ header h1 {
     border: 1px solid rgba(50, 50, 50, 0.3);
     transition: .4s ease-out;
     overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-img {

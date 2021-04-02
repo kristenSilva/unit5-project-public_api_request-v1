@@ -17,7 +17,8 @@ fetch(userURL)
     .then(response => response.json())
     .then(data => generateGallery(data.results))
     .then(results => addClick(results))
-    .then(res => toggleModal(res));
+    .then(res => toggleModal(res))
+    .catch(error => console.log('Looks like there was a problem', error));
 
 /**
  * getEmployees
