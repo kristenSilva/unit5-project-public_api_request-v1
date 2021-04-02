@@ -21,6 +21,7 @@ body {
 
 header {
     padding: 15px 5px 5px;
+    background-color: rgb(189, 168, 206);
 }
 
 .header-inner-container {
@@ -29,11 +30,10 @@ header {
 }
 
 header h1 {
-    /*font-size: 1.25em;*/
-    color: rgba(50, 50, 50, 0.9);
+    color: white;
     margin-top: 35px;
     font-size: xx-large;
-    /*text-shadow: 2px 2px 5px plum;*/
+    text-shadow: 2px 2px 5px rgb(26, 22, 26);
 }
 
 .search-input {
@@ -94,7 +94,7 @@ header h1 {
     border: 1px solid rgba(50, 50, 50, 0.3);
     transition: .4s ease-out;
     overflow: hidden;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .card-img {

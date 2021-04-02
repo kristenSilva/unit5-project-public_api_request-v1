@@ -15,3 +15,41 @@
 MODAL buttons
  if next button clicked update modal with results[i+1]
  --> if you are at the end you need to disable next button
+
+ONE WAY TO REQUEST DATA --> why create a separate function?
+ // Created in Trehouse course ****REMEMBER TO ADD LINK********
+// function fetchData(url){
+//     return fetch(url)
+//             .then(checkStatus)
+//             .then(res => res.json())
+//             .catch(error => console.log('Looks like there was a problem', error));
+// }
+
+ANOTHER WAY TO REQUEST DATA
+/**
+ * getEmployees
+ */
+// async function getEmployees(url){
+//     const employees = await getJSON(url);
+//     return Promise.all(employees);
+// }
+
+Reached out on treehouse and got the following response:
+the handy fetch() method is like a shorthand for AJAX.  It's the modern default way of making requests across the web in JS.  Async/await isn't an alternative to fetch.  You could say that async/await is an alternative way to deal with promises rather than chaining together a bunch of .then methods.
+And yeah, I can see a way to tighten up your fetching and working with the response data.  If you go with the long hand arrow function, you can do more than one thing in a .then method.  You could remove some .then() methods form your chain if you went with something like this:
+fetch(userURL)
+    .then(response => response.json())
+    .then(data => {
+        generateGallery(data.results);
+        addClick(data.results);
+        toggleModal(data.results)
+    })
+    .catch(error => console.log('Looks like there was a problem', error));
+
+THIS IS WHAT I HAD INITIALLY
+    fetch(userURL)
+    .then(response => response.json())
+    .then(data => generateGallery(data.results))
+    .then(results => addClick(results))
+    .then(res => toggleModal(res))
+    .catch(error => console.log('Looks like there was a problem', error));

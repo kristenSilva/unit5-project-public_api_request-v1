@@ -3,35 +3,22 @@ const gallery = document.getElementById('gallery');
 const userURL = 'https://randomuser.me/api/?results=12&nat=us';
 
 /**
- * FETCH FUNCTIONS
+ * Fetch data and dynamically display the employee information
  */
-// Created in Trehouse course ****REMEMBER TO ADD LINK********
-// function fetchData(url){
-//     return fetch(url)
-//             .then(checkStatus)
-//             .then(res => res.json())
-//             .catch(error => console.log('Looks like there was a problem', error));
-// }
 generateModal();
 fetch(userURL)
     .then(response => response.json())
-    .then(data => generateGallery(data.results))
-    .then(results => addClick(results))
-    .then(res => toggleModal(res))
+    .then(data => {
+        generateGallery(data.results);
+        addClick(data.results);
+        toggleModal(data.results)
+    })
     .catch(error => console.log('Looks like there was a problem', error));
 
 /**
- * getEmployees
- */
-// async function getEmployees(url){
-//     const employees = await getJSON(url);
-//     return Promise.all(employees);
-// }
-
-/**
  * generateGallery
-    * @param {array} results array of response objects 
-    * @return {array} same array result is returned
+    * @param {array} results - array of response objects 
+    * @return {array} - same array result is returned
     * Creates the 12 `div` elements with employee information
  */
 function generateGallery(results){
@@ -102,7 +89,7 @@ function updateModal(employee) {
 
 /**
  * addClick
-    * @param {array} results array of response objects 
+    * @param {array} results - array of response objects 
     * Attaches an event listener to each `div` element containing employee
     * Event listener fills modal container with respective employee information & displays modal
  */
@@ -123,10 +110,10 @@ function addClick(results){
 /**
  * FORMATTING FUNCTIONS
  */
- function formatTelephone(text){
+function formatTelephone(text){
     const regex = /^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*$/;
     return text.replace(regex, '($1) $2-$3');
-  }
+}
 
 function formatDate(text){
     const date = new Date(text);
@@ -196,7 +183,7 @@ const prevBtn = document.getElementById('modal-prev');
 
 /**
  * toggleModal
-    * @param {array} results array of response objects 
+    * @param {array} results - array of response objects 
     * Allows user to toggle back and forth between employees on open modal window
  */
 function toggleModal(results){
