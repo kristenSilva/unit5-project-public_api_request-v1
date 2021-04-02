@@ -1,0 +1,11 @@
+ idea for closing modal window if you click anywhere outside modal
+  // const outsideModal = document.querySelector('body');
+    // outsideModal.addEventListener('click', (e) => {
+    //     let element = e.target;
+    //     if(element === modalWindow && element !== modalButton){
+    //         console.log('nothing should happen')
+    //     } else {
+    //         modalWindow.style.display = 'none';
+    //     }
+        
+    // });
