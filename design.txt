@@ -9,3 +9,9 @@
     //     }
         
     // });
+
+
+
+MODAL buttons
+ if next button clicked update modal with results[i+1]
+ --> if you are at the end you need to disable next button

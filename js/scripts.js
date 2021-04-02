@@ -16,7 +16,8 @@ generateModal();
 fetch(userURL)
     .then(response => response.json())
     .then(data => generateGallery(data.results))
-    .then(results => addClick(results));
+    .then(results => addClick(results))
+    .then(res => toggleModal(res));
 
 /**
  * getEmployees
@@ -65,6 +66,10 @@ function generateModal(){
                 <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
                 <div class="modal-info-container"></div>
             </div>
+            <div class="modal-btn-container">
+                <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                <button type="button" id="modal-next" class="modal-next btn">Next</button>
+            </div>
         </div>
     `;
     gallery.insertAdjacentHTML('afterend', divModal);
@@ -100,6 +105,7 @@ function updateModal(employee) {
     * Attaches an event listener to each `div` element containing employee
     * Event listener fills modal container with respective employee information & displays modal
  */
+let currentIndex;
 function addClick(results){
     const cards = document.querySelectorAll('.card');
     for(let i = 0; i < cards.length; i++){
@@ -107,15 +113,14 @@ function addClick(results){
             const modal = document.querySelector('.modal-container');
             modal.style.display = 'inherit';
             updateModal(results[i]);
+            currentIndex = i;
         });
     }
     return results;
 }
 
 /**
- * 
  * FORMATTING FUNCTIONS
- * 
  */
  function formatTelephone(text){
     const regex = /^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*$/;
@@ -150,12 +155,12 @@ searchDiv.insertAdjacentHTML('beforeend',
  * Variables for search bar functionality
  */
 const searchInput = document.getElementById('search-input');
-const searchContainer = document.querySelector('.search-container');
 
-/*
-`searchNames` function
-   * This function returns a filtered list of student data based on user input
-*/
+/**
+ * searchNames function
+    * @param {input} searchInput - user input
+    * Verifies there are users displayed and show/hides user cards with respect to user input
+ */
 function searchNames(userInput){
     const cards = document.querySelectorAll('.card-name');
     if(cards.length !== 0){
@@ -174,9 +179,39 @@ function searchNames(userInput){
     }
  }
 
- /*
-Event listener for input
-*/
+/**
+ * Event listener for search bar
+ */
 searchInput.addEventListener('keyup', () => {
     searchNames(searchInput);
 });
+
+/**
+ * Variables for modal buttons functionality
+ */
+const nextPrevContainer = document.querySelector('.modal-btn-container');
+const nextBtn = document.getElementById('modal-next');
+const prevBtn = document.getElementById('modal-prev');
+
+/**
+ * toggleModal
+    * @param {array} results array of response objects 
+    * Allows user to toggle back and forth between employees on open modal window
+ */
+function toggleModal(results){
+    nextPrevContainer.addEventListener('click', (e) => {
+        const cards = document.querySelectorAll('.card');
+        if(e.target === nextBtn && currentIndex < (cards.length-1)){
+            updateModal(results[currentIndex+1]);
+            console.log(`should show ${currentIndex + 1}`);
+            currentIndex++;
+        }
+
+        if(e.target === prevBtn && currentIndex > 0){
+            updateModal(results[currentIndex-1]);
+            console.log(`should show ${currentIndex - 1}`);
+            currentIndex--;
+        }
+    });
+}
+
