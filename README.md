@@ -1,6 +1,7 @@
 # unit5-project-public_api_request-v1
  
 Public API Requests
+
 Using the Random User Generator API this app grabs information for 12 random 'employees', parses the JSON object, and displays that data in a grid format with their thumbnail image, full name, email, and location. Clicking the employee's information card opens a modal window with more detailed information (birthday and address).
 
 Formatting changes
