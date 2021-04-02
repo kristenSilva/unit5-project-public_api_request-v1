@@ -1,3 +1,4 @@
+const searchDiv = document.querySelector('.search-container');
 const gallery = document.getElementById('gallery');
 const userURL = 'https://randomuser.me/api/?results=12&nat=us';
 
@@ -108,6 +109,7 @@ function addClick(results){
             updateModal(results[i]);
         });
     }
+    return results;
 }
 
 /**
@@ -133,3 +135,48 @@ function formatDate(text){
     }
     return `${month}/${day}/${year}`;
 }
+
+/**
+ * Dynamically insert search bar
+ */
+searchDiv.insertAdjacentHTML('beforeend',
+    `<form action="#" method="get">
+        <input type="search" id="search-input" class="search-input" placeholder="Search...">
+        <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+    </form>`
+);
+
+/**
+ * Variables for search bar functionality
+ */
+const searchInput = document.getElementById('search-input');
+const searchContainer = document.querySelector('.search-container');
+
+/*
+`searchNames` function
+   * This function returns a filtered list of student data based on user input
+*/
+function searchNames(userInput){
+    const cards = document.querySelectorAll('.card-name');
+    if(cards.length !== 0){
+        for(let i = 0; i < cards.length; i++){
+            const fullName = cards[i].textContent.toLowerCase();
+            if(userInput !== 0){
+                if(fullName.includes(userInput.value.toLowerCase())){
+                    cards[i].parentElement.parentElement.style.display = 'inherit';
+                } else {
+                    cards[i].parentElement.parentElement.style.display = 'none';
+                }
+            } else {
+                cards[i].parentElement.parentElement.style.display = 'inherit';
+            }
+        }
+    }
+ }
+
+ /*
+Event listener for input
+*/
+searchInput.addEventListener('keyup', () => {
+    searchNames(searchInput);
+});
