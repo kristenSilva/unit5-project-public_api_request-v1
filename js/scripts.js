@@ -203,13 +203,11 @@ function toggleModal(results){
         const cards = document.querySelectorAll('.card');
         if(e.target === nextBtn && currentIndex < (cards.length-1)){
             updateModal(results[currentIndex+1]);
-            console.log(`should show ${currentIndex + 1}`);
             currentIndex++;
         }
 
         if(e.target === prevBtn && currentIndex > 0){
             updateModal(results[currentIndex-1]);
-            console.log(`should show ${currentIndex - 1}`);
             currentIndex--;
         }
     });
